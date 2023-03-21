@@ -1,13 +1,13 @@
 {
   "files": {
     "main.css": "/ecaracasdev/react-login-challange/static/css/main.7dea55e8.css",
-    "main.js": "/ecaracasdev/react-login-challange/static/js/main.01345945.js",
+    "main.js": "/ecaracasdev/react-login-challange/static/js/main.d140087e.js",
     "index.html": "/ecaracasdev/react-login-challange/index.html",
     "main.7dea55e8.css.map": "/ecaracasdev/react-login-challange/static/css/main.7dea55e8.css.map",
-    "main.01345945.js.map": "/ecaracasdev/react-login-challange/static/js/main.01345945.js.map"
+    "main.d140087e.js.map": "/ecaracasdev/react-login-challange/static/js/main.d140087e.js.map"
   },
   "entrypoints": [
     "static/css/main.7dea55e8.css",
-    "static/js/main.01345945.js"
+    "static/js/main.d140087e.js"
   ]
 }

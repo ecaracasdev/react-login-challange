@@ -1,7 +1,7 @@
 import { useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { useNavigate } from "react-router-dom"
-import { setAuth } from "../features/auth/authSlice"
+import { login } from "../features/auth/authSlice"
 import { Alert } from "./Alert"
 
 export const Login = () => {
@@ -28,7 +28,7 @@ export const Login = () => {
           throw new Error("user or password invalid")
 
         dispatch(
-          setAuth({
+          login({
               email: user.email,
               isLogged: true,
           })

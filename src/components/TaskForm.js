@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react"
 import { useDispatch, useSelector } from "react-redux"
-import { useNavigate, useParams } from "react-router-dom"
+import { Link, useNavigate, useParams } from "react-router-dom"
 import { v4 as uid } from "uuid"
 import { addTask, editTask } from "../features/tasks/taskSlice"
 
@@ -58,6 +58,13 @@ function TaskForm() {
       <button className="h-10 px-5 m-2 text-indigo-100 transition-colors duration-150 bg-indigo-700 rounded-lg focus:shadow-outline hover:bg-indigo-800">
         Save
       </button>
+      <Link
+          to="/tasks"
+          className="h-10 p-2 m-2 text-indigo-100 transition-colors duration-150 bg-gray-700 rounded-lg focus:shadow-outline hover:bg-gray-900"
+        >
+          {" "}
+          Back
+        </Link>
     </form>
   )
 }

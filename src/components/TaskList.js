@@ -2,17 +2,27 @@ import React from "react"
 import { deleteTask } from "../features/tasks/taskSlice"
 import { useDispatch, useSelector } from "react-redux"
 import { Link } from "react-router-dom"
+import { logout } from "../features/auth/authSlice"
 function TaskList() {
   const dispatch = useDispatch()
 
   const tasks = useSelector((state) => state.tasks.list)
+
   const handleDelete = (id) => {
     dispatch(deleteTask(id))
   }
 
+  const handleLogOut = () => {
+    dispatch(
+      logout({
+        isLogged: false,
+      })
+    )
+  }
+
   return (
     <div className="w-4/6">
-      <header className="flex justify-between items-center p-4">
+      <header className="flex  items-center p-4">
         <h1>Tasks {tasks.length}</h1>
         <Link
           to="/create-task"
@@ -21,11 +31,16 @@ function TaskList() {
           {" "}
           Create Task
         </Link>
+
+        <button onClick={handleLogOut}>LogOut</button>
       </header>
 
       {tasks.map((task) => (
-        <div key={task.id} className="mt-5 flex items-center justify-between p-2">
-          <div  className="flex items-center justify-center gap-2">
+        <div
+          key={task.id}
+          className="mt-5 flex items-center justify-between p-2"
+        >
+          <div className="flex items-center justify-center gap-2">
             <p className="text-base font-bold text-navy-700 dark:text-white">
               {task.title}
             </p>

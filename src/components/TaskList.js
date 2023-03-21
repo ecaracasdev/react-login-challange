@@ -8,10 +8,9 @@ import PageSelector from "./PageSelector"
 function TaskList() {
   const dispatch = useDispatch()
   const tasks = useSelector((state) => state.tasks.list)
-
-  const [filteredRecords, setFilteredRecords] = useState(tasks)
-
   const pagination = useSelector((state) => state.pagination)
+  let records = tasks.slice(pagination.firstIndex, pagination.lastIndex)
+
 
   const handleDelete = (id) => {
     dispatch(deleteTask(id))
@@ -29,21 +28,21 @@ function TaskList() {
     dispatch(completeTask(id))
   }
 
-  const handleSearchByTitle = (e) => {
-    const searchTerm = e.target.value.toLowerCase()
-    if (searchTerm !== '') {
-      const filtered = tasks.filter((record) =>
-        record.title.slice(0, 3).toLowerCase().includes(searchTerm)
-      )
-      setFilteredRecords(filtered)
-    }
-  }
+  // const handleSearchByTitle = (e) => {
+  //   const searchTerm = e.target.value.toLowerCase()
+  //   if (searchTerm !== '') {
+  //     const filtered = tasks.filter((record) =>
+  //       record.title.slice(0, 3).toLowerCase().includes(searchTerm)
+  //     )
+  //     setFilteredRecords(filtered)
+  //   }
+  // }
 
-  const handleSearchClick = (e) => {
-    setFilteredRecords(tasks)
-  }
+  // const handleSearchClick = (e) => {
+  //   setFilteredRecords(tasks)
+  // }
 
-  let records = filteredRecords.slice(pagination.firstIndex, pagination.lastIndex)
+  
 
   return (
     <div className="sm:px-6 w-full">
@@ -69,7 +68,7 @@ function TaskList() {
             <PageSelector />
           </div>
 
-          <div className="flex items-center">
+          {/* <div className="flex items-center">
             <div className="flex justify-center">
               <div className="mb-3 xl:w-96">
                 <div className="relative mb-4 flex w-full flex-wrap items-stretch">
@@ -86,7 +85,7 @@ function TaskList() {
                 </div>
               </div>
             </div>
-          </div>
+          </div> */}
 
           <Link
             to="/create-task"

@@ -1,0 +1,13 @@
+Para inicializar el proyecto use npx create-react-app 
+
+Utilizare React redux-tooklkit me parecio la manera mas facil de abordar Redux
+
+https://redux-toolkit.js.org/tutorials/quick-start
+
+npm install @reduxjs/toolkit react-redux
+
+Paso 1 Create a Redux Store src/app/store.js
+Paso 2 Using the provider to manage the state from the store
+    this way we create a context for all the app
+Paso 3 Create a Redux State Slice  src/features/counter/counterSlice.js
+    create a Reducers , allow update the state, and set a new state

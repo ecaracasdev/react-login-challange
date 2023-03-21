@@ -1,4 +1,4 @@
-import React from "react"
+import React, { useState } from "react"
 import { completeTask, deleteTask } from "../features/tasks/taskSlice"
 import { useDispatch, useSelector } from "react-redux"
 import { Link } from "react-router-dom"
@@ -8,8 +8,10 @@ import PageSelector from "./PageSelector"
 function TaskList() {
   const dispatch = useDispatch()
   const tasks = useSelector((state) => state.tasks.list)
+
+  const [filteredRecords, setFilteredRecords] = useState(tasks)
+
   const pagination = useSelector((state) => state.pagination)
-  const records = tasks.slice(pagination.firstIndex, pagination.lastIndex)
 
   const handleDelete = (id) => {
     dispatch(deleteTask(id))
@@ -26,6 +28,22 @@ function TaskList() {
   const markAsComplete = (id) => {
     dispatch(completeTask(id))
   }
+
+  const handleSearchByTitle = (e) => {
+    const searchTerm = e.target.value.toLowerCase()
+    if (searchTerm !== '') {
+      const filtered = tasks.filter((record) =>
+        record.title.slice(0, 3).toLowerCase().includes(searchTerm)
+      )
+      setFilteredRecords(filtered)
+    }
+  }
+
+  const handleSearchClick = (e) => {
+    setFilteredRecords(tasks)
+  }
+
+  let records = filteredRecords.slice(pagination.firstIndex, pagination.lastIndex)
 
   return (
     <div className="sm:px-6 w-full">
@@ -49,6 +67,25 @@ function TaskList() {
         <div className="sm:flex items-center justify-between">
           <div className="flex items-center">
             <PageSelector />
+          </div>
+
+          <div className="flex items-center">
+            <div className="flex justify-center">
+              <div className="mb-3 xl:w-96">
+                <div className="relative mb-4 flex w-full flex-wrap items-stretch">
+                  <input
+                    type="search"
+                    className="relative m-0 -mr-px block w-[1%] min-w-0 flex-auto rounded-l border border-solid border-neutral-300 bg-transparent bg-clip-padding px-3 py-1.5 text-base font-normal text-neutral-700 outline-none transition duration-300 ease-in-out focus:border-primary focus:text-neutral-700 focus:shadow-te-primary focus:outline-none dark:text-neutral-200 dark:placeholder:text-neutral-200"
+                    placeholder="Search By Title"
+                    aria-label="Search"
+                    aria-describedby="button-addon1"
+                    onChange={handleSearchByTitle}
+                    onClick={handleSearchClick}
+                  />
+                  
+                </div>
+              </div>
+            </div>
           </div>
 
           <Link

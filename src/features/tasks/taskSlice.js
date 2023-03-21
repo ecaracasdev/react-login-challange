@@ -11,7 +11,7 @@ export const taskSlice = createSlice({
       state.list = action.payload
     },
     addTask: (state, action) => {
-      state.list.push(action.payload)
+      state.list.unshift(action.payload)
     },
     deleteTask: (state, action) => {
       const taskFound = state.list.find((task) => task.id === action.payload)
@@ -28,9 +28,7 @@ export const taskSlice = createSlice({
     },
     completeTask: (state, action) => {
       const taskFound = state.list.find((task) => task.id === action.payload)
-      console.log(action.payload)
       if (taskFound) {
-        console.log("first")
         taskFound.completed = !taskFound.completed
       }
     },

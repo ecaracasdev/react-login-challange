@@ -17,7 +17,7 @@ function App() {
   return (
     <div className="h-full min-h-screen">
       <div className="flex items-center justify-center h-full">
-        <BrowserRouter>
+        <BrowserRouter basename="/react-login-challange/">
           <Routes>
             <Route index path="/" element={<Login />} />
             <Route path="/login" element={<Login />} />

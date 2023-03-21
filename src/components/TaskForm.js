@@ -44,7 +44,7 @@ function TaskForm() {
       )
     }
 
-    navigate("/")
+    navigate("/tasks")
   }
   return (
     <form onSubmit={handleSubmit}>

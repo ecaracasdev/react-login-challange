@@ -5,6 +5,8 @@ import { BrowserRouter, Routes, Route } from "react-router-dom"
 import { useEffect } from "react"
 import { useDispatch } from "react-redux"
 import { fetchTodos } from "./features/tasks/taskSlice"
+import { Login } from "./components/Login"
+import { ProtectedRoute } from "./components/ProtectedRoute"
 
 function App() {
   const dispatch = useDispatch()
@@ -17,9 +19,13 @@ function App() {
       <div className="flex items-center justify-center h-full">
         <BrowserRouter>
           <Routes>
-            <Route path="/" element={<TaskList />} />
-            <Route path="/create-task" element={<TaskForm />} />
-            <Route path="/edit-task/:id" element={<TaskForm />} />
+            <Route index path="/" element={<Login />} />
+            <Route path="/login" element={<Login />} />
+            <Route element={<ProtectedRoute />}>
+              <Route path="/tasks" element={<TaskList />} />
+              <Route path="/create-task" element={<TaskForm />} />
+              <Route path="/edit-task/:id" element={<TaskForm />} />
+            </Route>
           </Routes>
         </BrowserRouter>
       </div>

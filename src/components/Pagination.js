@@ -76,7 +76,8 @@ function Pagination() {
           <p className="text-sm text-gray-700">
             Showing <span className="font-medium">{firstIndex + 1}</span> to{" "}
             <span className="font-medium">{lastIndex}</span> of{" "}
-            <span className="font-medium">{tasks.length}</span> results
+            <span className="font-medium">{tasks.length}</span> results,{" "}
+            <span className="font-medium"> {" "} page {" "} {`${currentPage}/${npages}`}</span> 
           </p>
         </div>
         <div>

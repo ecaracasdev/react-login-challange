@@ -14,22 +14,31 @@ export const taskSlice = createSlice({
       state.list.push(action.payload)
     },
     deleteTask: (state, action) => {
-      const taskFound = state.list.find(task => task.id === action.payload)
+      const taskFound = state.list.find((task) => task.id === action.payload)
       if (taskFound) {
         state.list.splice(state.list.indexOf(taskFound), 1)
       }
     },
     editTask: (state, action) => {
       const { id, title } = action.payload
-      const taskFound = state.list.find(task => task.id === id)
+      const taskFound = state.list.find((task) => task.id === id)
       if (taskFound) {
         taskFound.title = title
       }
-    }
+    },
+    completeTask: (state, action) => {
+      const taskFound = state.list.find((task) => task.id === action.payload)
+      console.log(action.payload)
+      if (taskFound) {
+        console.log("first")
+        taskFound.completed = !taskFound.completed
+      }
+    },
   },
 })
 
-export const { setTodoList, addTask, deleteTask, editTask } = taskSlice.actions
+export const { setTodoList, addTask, deleteTask, editTask, completeTask } =
+  taskSlice.actions
 
 export default taskSlice.reducer
 
